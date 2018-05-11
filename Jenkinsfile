@@ -1,17 +1,28 @@
 pipeline {
-    agent { docker { image 'php' } }
+    agent any
     stages {
-    	stage('my-stage') {
+        stage('Build') {
+            steps {
+                sh 'Processing Build steps...'
+            }
+        }
+    	stage('Test') {
     		steps {
     			retry(3) {
-    				sh 'echo "This is my-stage stage! Let\'s retry it 3 times!"'
+    				sh 'echo "Processing Test steps... If this failed, let\'s retry it 3 times!"'
     			}
     		}
     	}
-        stage('build') {
-            steps {
-                sh 'php --version'
-            }
+        stage('Deploy - Staging') {
+        	sh 'echo "Processing staging deployment steps..."'
+        }
+        stage('Deploy - Preproduction') {
+        	steps {
+        		input "Are you sure you want to deploy this project?"
+        	}
+        }
+        stage('Deploy - Production') {
+        	sh 'echo "Processing production deployment steps...'
         }
     }
     post {
@@ -19,10 +30,10 @@ pipeline {
     		echo 'Pipeline finished! Fail or success? I don\'t care :P'
     	}
     	success {
-    		echo 'Pipeline successed'
+    		echo 'Software delpoyed!'
     	}
     	failure {
-    		echo 'Pipeline failed'
+    		echo 'Failed!'
     	}
     	unstable {
     		echo 'Unstable!'
