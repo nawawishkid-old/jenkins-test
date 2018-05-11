@@ -14,7 +14,9 @@ pipeline {
     		}
     	}
         stage('Deploy - Staging') {
-        	sh 'echo "Processing staging deployment steps..."'
+        	steps {
+        		sh 'echo "Processing staging deployment steps..."'
+        	}
         }
         stage('Deploy - Preproduction') {
         	steps {
@@ -22,7 +24,9 @@ pipeline {
         	}
         }
         stage('Deploy - Production') {
-        	sh 'echo "Processing production deployment steps...'
+        	steps {
+        		sh 'echo "Processing production deployment steps...'
+        	}
         }
     }
     post {
