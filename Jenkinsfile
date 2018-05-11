@@ -25,7 +25,7 @@ pipeline {
         }
         stage('Deploy - Production') {
         	steps {
-        		sh 'echo "Processing production deployment steps...'
+        		sh 'echo "Processing production deployment steps..."'
         	}
         }
     }
