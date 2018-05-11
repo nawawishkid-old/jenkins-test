@@ -4,7 +4,7 @@ pipeline {
     	stage('my-stage') {
     		steps {
     			retry(3) {
-    				sh 'echo This is my-stage stage! Let's retry it 3 times!'
+    				sh 'echo This is my-stage stage! Let\'s retry it 3 times!'
     			}
     		}
     	}
